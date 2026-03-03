@@ -22,6 +22,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -121,1893 +122,387 @@
         ]
     }
     </script>
-
-    <style>
-        /* ═══════════════════════════════════════
-           DESIGN SYSTEM — OBSIDIAN & GOLD
-           Award-winning Apple-inspired design
-           ═══════════════════════════════════════ */
-
-        :root {
-            --black: #000000;
-            --obsidian: #050505;
-            --surface: #0a0a0a;
-            --surface-2: #111111;
-            --surface-3: #1a1a1a;
-            --surface-4: #222222;
-            --border: rgba(255,255,255,0.06);
-            --border-hover: rgba(255,255,255,0.12);
-            --gold: #c8a44e;
-            --gold-bright: #d4b65c;
-            --gold-dim: rgba(200,164,78,0.12);
-            --gold-glow: rgba(200,164,78,0.06);
-            --white: #f5f5f7;
-            --gray-1: #e0deda;
-            --gray-2: #a1a1a6;
-            --gray-3: #6e6e73;
-            --gray-4: #424245;
-            --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-            --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-            --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        body {
-            font-family: var(--sans);
-            background: var(--black);
-            color: var(--white);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        ::selection {
-            background: var(--gold);
-            color: var(--black);
-        }
-
-        img { max-width: 100%; display: block; }
-        a { text-decoration: none; color: inherit; }
-
-        /* ═══════════════════════════════════════
-           NAVIGATION — Frosted Glass
-           ═══════════════════════════════════════ */
-
-        .nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            height: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.6s var(--ease-out-expo);
-        }
-
-        .nav.scrolled {
-            background: rgba(0,0,0,0.72);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 0.5px solid rgba(255,255,255,0.08);
-        }
-
-        .nav-inner {
-            width: 100%;
-            max-width: 1024px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 22px;
-        }
-
-        .nav-logo {
-            font-family: var(--serif);
-            font-size: 19px;
-            font-weight: 600;
-            color: var(--white);
-            letter-spacing: 0.5px;
-            transition: opacity 0.3s;
-        }
-        .nav-logo:hover { opacity: 0.7; }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 12px;
-            color: var(--gray-2);
-            transition: color 0.3s;
-            font-weight: 400;
-        }
-        .nav-links a:hover { color: var(--white); }
-
-        .nav-cta-link {
-            font-size: 12px;
-            color: var(--gold) !important;
-            font-weight: 500;
-        }
-
-        .nav-mobile {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            width: 36px;
-            height: 36px;
-            position: relative;
-        }
-        .nav-mobile span {
-            display: block;
-            width: 18px;
-            height: 1px;
-            background: var(--gray-2);
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: all 0.3s var(--ease-out-expo);
-        }
-        .nav-mobile span:first-child { top: 13px; }
-        .nav-mobile span:last-child { top: 22px; }
-        .nav-mobile.open span:first-child { top: 17px; transform: translateX(-50%) rotate(45deg); }
-        .nav-mobile.open span:last-child { top: 17px; transform: translateX(-50%) rotate(-45deg); }
-
-        /* ═══════════════════════════════════════
-           HERO — Cinematic Full-Viewport
-           ═══════════════════════════════════════ */
-
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            min-height: 100dvh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 24px 80px;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 50% 50% at 50% 50%, rgba(200,164,78,0.03) 0%, transparent 70%),
-                radial-gradient(ellipse 80% 40% at 50% 100%, rgba(200,164,78,0.02) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-overline {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 32px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1s var(--ease-out-expo) 0.3s forwards;
-        }
-
-        .hero-overline::before,
-        .hero-overline::after {
-            content: '';
-            width: 24px;
-            height: 0.5px;
-            background: var(--gold);
-            opacity: 0.5;
-        }
-
-        .hero h1 {
-            font-family: var(--serif);
-            font-size: clamp(42px, 7.5vw, 88px);
-            font-weight: 400;
-            line-height: 1.05;
-            letter-spacing: -0.02em;
-            max-width: 900px;
-            margin-bottom: 28px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1.2s var(--ease-out-expo) 0.5s forwards;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--gold);
-        }
-
-        .hero-description {
-            font-size: clamp(16px, 2vw, 20px);
-            color: var(--gray-2);
-            max-width: 520px;
-            line-height: 1.6;
-            font-weight: 300;
-            margin-bottom: 48px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1s var(--ease-out-expo) 0.8s forwards;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1s var(--ease-out-expo) 1s forwards;
-        }
-
-        .btn-gold {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 32px;
-            background: var(--gold);
-            color: var(--black);
-            font-family: var(--sans);
-            font-size: 14px;
-            font-weight: 600;
-            border: none;
-            border-radius: 980px;
-            cursor: pointer;
-            transition: all 0.4s var(--ease-out-expo);
-        }
-        .btn-gold:hover {
-            transform: scale(1.04);
-            box-shadow: 0 4px 32px rgba(200,164,78,0.3);
-        }
-        .btn-gold svg { width: 16px; height: 16px; }
-
-        .btn-ghost {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 32px;
-            background: rgba(255,255,255,0.04);
-            color: var(--gray-1);
-            font-family: var(--sans);
-            font-size: 14px;
-            font-weight: 500;
-            border: 1px solid var(--border);
-            border-radius: 980px;
-            cursor: pointer;
-            transition: all 0.4s var(--ease-out-expo);
-        }
-        .btn-ghost:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: var(--border-hover);
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 64px;
-            margin-top: 80px;
-            padding-top: 48px;
-            border-top: 0.5px solid var(--border);
-            opacity: 0;
-            animation: fadeUp 1s var(--ease-out-expo) 1.3s forwards;
-        }
-
-        .hero-stat {
-            text-align: center;
-        }
-
-        .hero-stat-number {
-            font-family: var(--serif);
-            font-size: 48px;
-            font-weight: 400;
-            color: var(--white);
-            line-height: 1;
-        }
-
-        .hero-stat-label {
-            font-size: 11px;
-            color: var(--gray-3);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 8px;
-            font-weight: 500;
-        }
-
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ═══════════════════════════════════════
-           MARQUEE — Trust Band
-           ═══════════════════════════════════════ */
-
-        .trust-band {
-            padding: 20px 0;
-            border-top: 0.5px solid var(--border);
-            border-bottom: 0.5px solid var(--border);
-            background: var(--obsidian);
-            overflow: hidden;
-        }
-
-        .trust-inner {
-            display: flex;
-            align-items: center;
-            gap: 48px;
-            animation: marquee 30s linear infinite;
-            width: max-content;
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            white-space: nowrap;
-            font-size: 12px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gray-3);
-            font-weight: 500;
-        }
-
-        .trust-dot {
-            width: 4px;
-            height: 4px;
-            background: var(--gold);
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* ═══════════════════════════════════════
-           SECTION SYSTEM — Apple Pacing
-           ═══════════════════════════════════════ */
-
-        .section {
-            padding: 100px 24px;
-            position: relative;
-        }
-
-        .section-dark { background: var(--obsidian); }
-        .section-deeper { background: var(--black); }
-        .section-surface { background: var(--surface); }
-
-        .section-container {
-            max-width: 980px;
-            margin: 0 auto;
-        }
-
-        .section-container-wide {
-            max-width: 1120px;
-            margin: 0 auto;
-        }
-
-        .section-eyebrow {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 12px;
-        }
-
-        .section-headline {
-            font-family: var(--serif);
-            font-size: clamp(36px, 5vw, 64px);
-            font-weight: 400;
-            line-height: 1.08;
-            letter-spacing: -0.02em;
-            margin-bottom: 20px;
-        }
-
-        .section-headline em {
-            font-style: italic;
-            color: var(--gold);
-        }
-
-        .section-subheadline {
-            font-size: clamp(16px, 1.8vw, 20px);
-            color: var(--gray-2);
-            font-weight: 300;
-            line-height: 1.6;
-            max-width: 560px;
-        }
-
-        .text-center { text-align: center; }
-        .text-center .section-subheadline { margin: 0 auto; }
-
-        /* ═══════════════════════════════════════
-           SERVICES — Product-Page Style
-           Full-width immersive sections
-           ═══════════════════════════════════════ */
-
-        .services-intro {
-            text-align: center;
-            padding-bottom: 0;
-        }
-
-        /* Service Feature — Apple-style centered text sections */
-        .service-feature {
-            padding: 80px 24px;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 0.5px solid var(--border);
-        }
-
-        .service-feature:nth-child(odd) { background: var(--obsidian); }
-        .service-feature:nth-child(even) { background: var(--surface); }
-
-        .service-feature-inner {
-            max-width: 720px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .service-feature-icon {
-            width: 56px;
-            height: 56px;
-            margin: 0 auto 28px;
-            border-radius: 14px;
-            background: var(--gold-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .service-feature-icon svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--gold);
-            fill: none;
-            stroke-width: 1.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .service-feature-content h3 {
-            font-family: var(--serif);
-            font-size: clamp(28px, 3.5vw, 44px);
-            font-weight: 400;
-            line-height: 1.12;
-            letter-spacing: -0.01em;
-            margin-bottom: 20px;
-        }
-
-        .service-feature-content p {
-            font-size: 17px;
-            color: var(--gray-2);
-            line-height: 1.7;
-            font-weight: 300;
-            margin-bottom: 16px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .service-feature-list {
-            list-style: none;
-            margin-top: 32px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            border: 0.5px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            max-width: 540px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: left;
-        }
-
-        .service-feature-list li {
-            padding: 16px 20px;
-            font-size: 14px;
-            color: var(--gray-1);
-            font-weight: 400;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--surface);
-            border-bottom: 0.5px solid var(--border);
-            border-right: 0.5px solid var(--border);
-        }
-
-        .service-feature-list li:nth-child(even) { border-right: none; }
-        .service-feature-list li:nth-last-child(-n+2) { border-bottom: none; }
-
-        .service-check {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--gold-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .service-check svg {
-            width: 10px;
-            height: 10px;
-            stroke: var(--gold);
-            fill: none;
-            stroke-width: 2;
-        }
-
-        /* ═══════════════════════════════════════
-           SERVICES GRID — Secondary Services
-           ═══════════════════════════════════════ */
-
-        .services-grid-section { background: var(--black); }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border: 0.5px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            margin-top: 64px;
-        }
-
-        .service-card {
-            background: var(--surface);
-            padding: 48px 36px;
-            transition: all 0.5s var(--ease-out-expo);
-            position: relative;
-        }
-
-        .service-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 2px;
-            background: var(--gold);
-            transform: scaleX(0);
-            transition: transform 0.5s var(--ease-out-expo);
-        }
-
-        .service-card:hover { background: var(--surface-2); }
-        .service-card:hover::after { transform: scaleX(1); }
-
-        .service-card-icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 24px;
-        }
-        .service-card-icon svg {
-            width: 36px;
-            height: 36px;
-            stroke: var(--gold);
-            fill: none;
-            stroke-width: 1.2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .service-card h3 {
-            font-family: var(--serif);
-            font-size: 22px;
-            font-weight: 500;
-            margin-bottom: 12px;
-            letter-spacing: -0.01em;
-        }
-
-        .service-card p {
-            font-size: 14px;
-            color: var(--gray-2);
-            line-height: 1.7;
-            font-weight: 300;
-        }
-
-        /* ═══════════════════════════════════════
-           ABOUT — Split Layout
-           ═══════════════════════════════════════ */
-
-        .about-section { background: var(--obsidian); }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 5fr 7fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .about-portrait {
-            position: sticky;
-            top: 100px;
-            border-radius: 20px;
-            overflow: hidden;
-            background: linear-gradient(160deg, var(--surface-2), var(--surface-3));
-            border: 0.5px solid var(--border);
-            padding: 56px 40px;
-            text-align: center;
-        }
-
-        .about-initials {
-            font-family: var(--serif);
-            font-size: 80px;
-            font-weight: 400;
-            color: var(--gold);
-            opacity: 0.7;
-            line-height: 1;
-            margin-bottom: 24px;
-        }
-
-        .about-portrait-name {
-            font-family: var(--serif);
-            font-size: 22px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-
-        .about-portrait-title {
-            font-size: 12px;
-            color: var(--gray-3);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 500;
-        }
-
-        .about-portrait-creds {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 0.5px solid var(--border);
-        }
-
-        .cred-badge {
-            padding: 6px 14px;
-            border: 0.5px solid var(--gold-dim);
-            border-radius: 980px;
-            font-size: 11px;
-            color: var(--gold);
-            letter-spacing: 1px;
-            font-weight: 500;
-            background: var(--gold-glow);
-        }
-
-        .about-body h3 {
-            font-family: var(--serif);
-            font-size: 36px;
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 24px;
-            letter-spacing: -0.01em;
-        }
-        .about-body h3 em { font-style: italic; color: var(--gold); }
-
-        .about-body p {
-            font-size: 16px;
-            color: var(--gray-2);
-            line-height: 1.8;
-            font-weight: 300;
-            margin-bottom: 20px;
-        }
-
-        .credentials-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 40px;
-        }
-
-        .credential-item {
-            padding: 20px;
-            background: var(--surface);
-            border: 0.5px solid var(--border);
-            border-radius: 12px;
-            transition: border-color 0.3s;
-        }
-        .credential-item:hover { border-color: var(--gold-dim); }
-
-        .credential-item h4 {
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 4px;
-            color: var(--gray-1);
-        }
-
-        .credential-item p {
-            font-size: 12px;
-            color: var(--gray-3);
-            font-weight: 400;
-            margin-bottom: 0;
-            line-height: 1.5;
-        }
-
-        /* ═══════════════════════════════════════
-           NUMBERS — Impact Statement
-           ═══════════════════════════════════════ */
-
-        .numbers-section {
-            background: var(--surface);
-            text-align: center;
-            padding: 100px 24px;
-        }
-
-        .numbers-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .number-item {
-            padding: 40px 24px;
-            position: relative;
-        }
-
-        .number-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 25%;
-            height: 50%;
-            width: 0.5px;
-            background: var(--border);
-        }
-
-        .number-value {
-            font-family: var(--serif);
-            font-size: clamp(36px, 4vw, 56px);
-            font-weight: 400;
-            color: var(--gold);
-            line-height: 1;
-        }
-
-        .number-label {
-            font-size: 12px;
-            color: var(--gray-3);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 12px;
-            font-weight: 500;
-        }
-
-        /* ═══════════════════════════════════════
-           PROCESS — Timeline
-           ═══════════════════════════════════════ */
-
-        .process-section { background: var(--black); }
-
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin-top: 64px;
-        }
-
-        .process-step {
-            position: relative;
-            padding: 32px 28px;
-            background: var(--surface);
-            border: 0.5px solid var(--border);
-            border-radius: 16px;
-            transition: all 0.5s var(--ease-out-expo);
-        }
-
-        .process-step:hover {
-            border-color: var(--gold-dim);
-            transform: translateY(-4px);
-        }
-
-        .process-number {
-            font-family: var(--serif);
-            font-size: 48px;
-            font-weight: 400;
-            color: var(--gold);
-            opacity: 0.2;
-            line-height: 1;
-            margin-bottom: 20px;
-        }
-
-        .process-step h3 {
-            font-family: var(--serif);
-            font-size: 20px;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-
-        .process-step p {
-            font-size: 14px;
-            color: var(--gray-2);
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        /* ═══════════════════════════════════════
-           FAQ — AEO Optimized
-           ═══════════════════════════════════════ */
-
-        .faq-section { background: var(--obsidian); }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-top: 64px;
-        }
-
-        .faq-item {
-            border: 0.5px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            background: var(--surface);
-            transition: border-color 0.3s;
-        }
-        .faq-item:hover { border-color: var(--border-hover); }
-
-        .faq-question {
-            width: 100%;
-            background: none;
-            border: none;
-            padding: 24px 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            text-align: left;
-            font-family: var(--sans);
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--gray-1);
-            gap: 16px;
-        }
-
-        .faq-toggle {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--gold-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: all 0.3s var(--ease-out-expo);
-        }
-
-        .faq-toggle svg {
-            width: 12px;
-            height: 12px;
-            stroke: var(--gold);
-            fill: none;
-            stroke-width: 2;
-            transition: transform 0.3s var(--ease-out-expo);
-        }
-
-        .faq-item.open .faq-toggle { background: var(--gold); }
-        .faq-item.open .faq-toggle svg { stroke: var(--black); transform: rotate(45deg); }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s var(--ease-out-expo);
-        }
-
-        .faq-answer-inner {
-            padding: 0 28px 24px;
-            font-size: 14px;
-            color: var(--gray-2);
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        /* ═══════════════════════════════════════
-           CONTACT — Minimal Split
-           ═══════════════════════════════════════ */
-
-        .contact-section { background: var(--surface); }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .contact-info h3 {
-            font-family: var(--serif);
-            font-size: 36px;
-            font-weight: 400;
-            margin-bottom: 16px;
-            line-height: 1.15;
-        }
-        .contact-info h3 em { font-style: italic; color: var(--gold); }
-
-        .contact-info > p {
-            font-size: 16px;
-            color: var(--gray-2);
-            font-weight: 300;
-            line-height: 1.7;
-            margin-bottom: 40px;
-        }
-
-        .contact-details {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .contact-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: var(--gold-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .contact-icon svg {
-            width: 18px;
-            height: 18px;
-            stroke: var(--gold);
-            fill: none;
-            stroke-width: 1.5;
-        }
-
-        .contact-detail-text span {
-            display: block;
-            font-size: 11px;
-            color: var(--gray-3);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 500;
-            margin-bottom: 2px;
-        }
-
-        .contact-detail-text a,
-        .contact-detail-text p {
-            font-size: 15px;
-            color: var(--gray-1);
-            font-weight: 400;
-            transition: color 0.3s;
-        }
-        .contact-detail-text a:hover { color: var(--gold); }
-
-        .wa-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 36px;
-            padding: 14px 28px;
-            background: #25D366;
-            color: #fff;
-            font-weight: 600;
-            font-size: 14px;
-            border-radius: 980px;
-            transition: all 0.3s var(--ease-out-expo);
-        }
-        .wa-btn:hover {
-            transform: scale(1.04);
-            box-shadow: 0 4px 24px rgba(37, 211, 102, 0.3);
-        }
-        .wa-btn svg { width: 20px; height: 20px; fill: #fff; }
-
-        /* Form */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            background: var(--obsidian);
-            border: 0.5px solid var(--border);
-            border-radius: 20px;
-            padding: 40px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .form-field {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .form-field label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--gray-3);
-            font-weight: 600;
-        }
-
-        .form-field input,
-        .form-field textarea,
-        .form-field select {
-            padding: 14px 16px;
-            background: var(--surface);
-            border: 0.5px solid var(--border);
-            border-radius: 10px;
-            color: var(--white);
-            font-family: var(--sans);
-            font-size: 15px;
-            font-weight: 400;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .form-field input:focus,
-        .form-field textarea:focus,
-        .form-field select:focus {
-            border-color: var(--gold);
-        }
-
-        .form-field textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .form-field select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236e6e73' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-            cursor: pointer;
-        }
-        .form-field select option { background: var(--surface); }
-
-        .form-submit {
-            padding: 16px 32px;
-            background: var(--gold);
-            color: var(--black);
-            font-family: var(--sans);
-            font-weight: 600;
-            font-size: 14px;
-            border: none;
-            border-radius: 980px;
-            cursor: pointer;
-            transition: all 0.4s var(--ease-out-expo);
-            margin-top: 8px;
-            width: 100%;
-        }
-        .form-submit:hover {
-            box-shadow: 0 4px 32px rgba(200,164,78,0.3);
-            transform: scale(1.02);
-        }
-
-        /* ═══════════════════════════════════════
-           FOOTER — Clean & Minimal
-           ═══════════════════════════════════════ */
-
-        .footer {
-            background: var(--black);
-            border-top: 0.5px solid var(--border);
-            padding: 56px 24px 28px;
-        }
-
-        .footer-inner {
-            max-width: 980px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 48px;
-            margin-bottom: 48px;
-        }
-
-        .footer-brand {
-            font-family: var(--serif);
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .footer-desc {
-            font-size: 13px;
-            color: var(--gray-3);
-            line-height: 1.7;
-            font-weight: 300;
-            max-width: 280px;
-        }
-
-        .footer-col h4 {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gray-3);
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-
-        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        .footer-col a { font-size: 14px; color: var(--gray-2); font-weight: 300; transition: color 0.3s; }
-        .footer-col a:hover { color: var(--white); }
-
-        .footer-bottom {
-            padding-top: 28px;
-            border-top: 0.5px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-copy {
-            font-size: 12px;
-            color: var(--gray-4);
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 20px;
-        }
-        .footer-legal span {
-            font-size: 11px;
-            color: var(--gray-4);
-            letter-spacing: 1px;
-        }
-
-        /* ═══════════════════════════════════════
-           ANIMATIONS — Scroll Reveals
-           ═══════════════════════════════════════ */
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-d1 { transition-delay: 0.1s; }
-        .reveal-d2 { transition-delay: 0.2s; }
-        .reveal-d3 { transition-delay: 0.3s; }
-        .reveal-d4 { transition-delay: 0.4s; }
-
-        /* ═══════════════════════════════════════
-           RESPONSIVE — Mobile First Feel
-           ═══════════════════════════════════════ */
-
-        @media (max-width: 1024px) {
-            .service-feature-list { grid-template-columns: 1fr; }
-            .service-feature-list li { border-right: none; }
-            .service-feature-list li:nth-last-child(-n+2) { border-bottom: 0.5px solid var(--border); }
-            .service-feature-list li:last-child { border-bottom: none; }
-            .services-grid { grid-template-columns: 1fr 1fr; }
-            .about-grid { grid-template-columns: 1fr; gap: 48px; }
-            .about-portrait { position: static; max-width: 400px; margin: 0 auto; }
-            .credentials-grid { grid-template-columns: 1fr; }
-            .process-steps { grid-template-columns: 1fr 1fr; }
-            .numbers-grid { grid-template-columns: repeat(2, 1fr); }
-            .number-item:nth-child(2)::after { display: none; }
-            .number-item:nth-child(odd):not(:last-child)::after { display: block; }
-            .faq-grid { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .nav-mobile { display: block; }
-
-            .nav-links.open {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 52px;
-                left: 0; right: 0;
-                background: rgba(0,0,0,0.95);
-                backdrop-filter: blur(20px);
-                padding: 20px 24px;
-                gap: 16px;
-                border-bottom: 0.5px solid var(--border);
-            }
-
-            .section { padding: 80px 20px; }
-            .hero { padding: 100px 20px 60px; }
-            .hero-stats { flex-direction: column; gap: 24px; }
-            .hero-stat { display: flex; align-items: center; gap: 12px; }
-            .hero-stat-label { margin-top: 0; }
-            .services-grid { grid-template-columns: 1fr; }
-            .process-steps { grid-template-columns: 1fr; }
-            .numbers-grid { grid-template-columns: 1fr 1fr; }
-            .contact-form { padding: 28px 20px; }
-            .form-row { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 36px; }
-            .numbers-grid { grid-template-columns: 1fr; }
-            .number-item::after { display: none !important; }
-            .number-item { padding: 20px 0; border-bottom: 0.5px solid var(--border); }
-            .number-item:last-child { border-bottom: none; }
-            .hero-actions { flex-direction: column; width: 100%; }
-            .btn-gold, .btn-ghost { width: 100%; justify-content: center; }
-            .about-portrait-creds { flex-direction: column; }
-        }
-
-        /* ═══════════════════════════════════════
-           UTILITY
-           ═══════════════════════════════════════ */
-
-        .sr-only {
-            position: absolute;
-            width: 1px; height: 1px;
-            padding: 0; margin: -1px;
-            overflow: hidden;
-            clip: rect(0,0,0,0);
-            border: 0;
-        }
-    </style>
 </head>
-
 <body>
 
-<!-- ════════════════════════════════════════════════
-     NAVIGATION
-     ════════════════════════════════════════════════ -->
-<nav class="nav" id="nav" role="navigation" aria-label="Navegación principal">
-    <div class="nav-inner">
-        <a href="#" class="nav-logo" aria-label="LeSanjura - Inicio">LeSanjura</a>
-        <ul class="nav-links" id="navLinks" role="menubar">
-            <li role="none"><a href="#servicios" role="menuitem">Servicios</a></li>
-            <li role="none"><a href="#nosotros" role="menuitem">Nosotros</a></li>
-            <li role="none"><a href="#proceso" role="menuitem">Proceso</a></li>
-            <li role="none"><a href="#faq" role="menuitem">FAQ</a></li>
-            <li role="none"><a href="#contacto" role="menuitem" class="nav-cta-link">Contacto</a></li>
-        </ul>
-        <button class="nav-mobile" id="navToggle" aria-label="Menú" aria-expanded="false">
-            <span></span><span></span>
-        </button>
-    </div>
-</nav>
-
-<!-- ════════════════════════════════════════════════
-     HERO
-     ════════════════════════════════════════════════ -->
-<header class="hero" role="banner">
-    <div class="hero-overline">Mediación y Peritaje Contable en Panamá</div>
-
-    <h1>Resolvemos<br>conflictos con<br><em>certeza jurídica</em></h1>
-
-    <p class="hero-description">
-        Más de 15 años de experiencia en mediación de conflictos, peritaje contable
-        y auditoría forense. Doble idoneidad certificada en la República de Panamá.
-    </p>
-
-    <div class="hero-actions">
-        <a href="#contacto" class="btn-gold">
-            Consulta gratuita
-            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="#servicios" class="btn-ghost">Explorar servicios</a>
-    </div>
-
-    <div class="hero-stats">
-        <div class="hero-stat">
-            <div class="hero-stat-number" data-count="15">15+</div>
-            <div class="hero-stat-label">Años de Experiencia</div>
-        </div>
-        <div class="hero-stat">
-            <div class="hero-stat-number">#522</div>
-            <div class="hero-stat-label">Idoneidad MASC</div>
-        </div>
-        <div class="hero-stat">
-            <div class="hero-stat-number">#2949</div>
-            <div class="hero-stat-label">Idoneidad CPA</div>
-        </div>
-    </div>
-</header>
-
-<!-- ════════════════════════════════════════════════
-     TRUST BAND
-     ════════════════════════════════════════════════ -->
-<div class="trust-band" aria-hidden="true">
-    <div class="trust-inner">
-        <span class="trust-item"><span class="trust-dot"></span>Mediación Certificada</span>
-        <span class="trust-item"><span class="trust-dot"></span>Peritaje Contable</span>
-        <span class="trust-item"><span class="trust-dot"></span>Auditoría Forense</span>
-        <span class="trust-item"><span class="trust-dot"></span>Conciliación</span>
-        <span class="trust-item"><span class="trust-dot"></span>Arbitraje</span>
-        <span class="trust-item"><span class="trust-dot"></span>Negociación</span>
-        <span class="trust-item"><span class="trust-dot"></span>Reingeniería de Negocios</span>
-        <span class="trust-item"><span class="trust-dot"></span>Mediación Certificada</span>
-        <span class="trust-item"><span class="trust-dot"></span>Peritaje Contable</span>
-        <span class="trust-item"><span class="trust-dot"></span>Auditoría Forense</span>
-        <span class="trust-item"><span class="trust-dot"></span>Conciliación</span>
-        <span class="trust-item"><span class="trust-dot"></span>Arbitraje</span>
-        <span class="trust-item"><span class="trust-dot"></span>Negociación</span>
-        <span class="trust-item"><span class="trust-dot"></span>Reingeniería de Negocios</span>
-    </div>
-</div>
-
-<!-- ════════════════════════════════════════════════
-     SERVICES INTRO
-     ════════════════════════════════════════════════ -->
-<section class="section section-deeper services-intro" id="servicios">
-    <div class="section-container text-center">
-        <div class="reveal">
-            <p class="section-eyebrow">Servicios Profesionales</p>
-            <h2 class="section-headline">Cada conflicto tiene<br>una <em>solución inteligente</em></h2>
-            <p class="section-subheadline">
-                Siete disciplinas especializadas bajo un mismo techo.
-                Desde métodos alternos de resolución de conflictos hasta peritaje contable y auditoría forense.
-            </p>
-        </div>
-    </div>
-</section>
-
-<!-- ════════════════════════════════════════════════
-     SERVICE 1 — MEDIACIÓN
-     ════════════════════════════════════════════════ -->
-<article class="service-feature" id="mediacion">
-    <div class="service-feature-inner reveal">
-        <div class="service-feature-icon">
-            <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M3 18c0-3 2-5 5-5s5 2 5 5M11 18c0-3 2-5 5-5s5 2 5 5"/></svg>
-        </div>
-        <div class="service-feature-content">
-            <h3>Mediación de Conflictos</h3>
-            <p>Proceso voluntario y confidencial donde un mediador neutral facilita la comunicación entre las partes para alcanzar acuerdos mutuamente satisfactorios — sin necesidad de acudir a tribunales.</p>
-            <p>Regulada por el Decreto Ley 5 de 1999 en Panamá, la mediación ofrece una vía más rápida, económica y humana para resolver disputas.</p>
-            <ul class="service-feature-list">
-                <li><span class="service-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span>Conflictos comerciales</li>
-                <li><span class="service-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span>Disputas familiares</li>
-                <li><span class="service-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span>Conflictos laborales</li>
-                <li><span class="service-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span>Pensión alimenticia</li>
+    <!-- ═══════════════════════════════════════
+         NAVIGATION
+         ═══════════════════════════════════════ -->
+    <nav class="nav" id="nav" role="navigation" aria-label="Navegación principal">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">LeSanjura</a>
+            <ul class="nav-links" id="navLinks" role="menubar">
+                <li role="none"><a href="/servicios.html" role="menuitem">Servicios</a></li>
+                <li role="none"><a href="/nosotros.html" role="menuitem">Nosotros</a></li>
+                <li role="none"><a href="/contacto.html" role="menuitem" class="nav-cta-link">Contacto</a></li>
             </ul>
+            <button class="nav-mobile" id="navToggle" aria-label="Menú" aria-expanded="false">
+                <span></span><span></span>
+            </button>
         </div>
-    </div>
-</article>
+    </nav>
 
-<!-- ════════════════════════════════════════════════
-     SERVICE 2 — PERITAJE CONTABLE
-     ════════════════════════════════════════════════ -->
-<article class="service-feature" id="peritaje">
-    <div class="service-feature-inner reveal">
-        <div class="service-feature-icon">
-            <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+    <!-- ═══════════════════════════════════════
+         HERO — 100vh Cinematic
+         ═══════════════════════════════════════ -->
+    <header class="hero" role="banner">
+        <div class="hero-overline">Mediación y Peritaje Contable en Panamá</div>
+        <h1>Resolvemos<br>conflictos con<br><em>certeza jurídica</em></h1>
+        <p class="hero-description">Más de 15 años de experiencia en mediación de conflictos, peritaje contable y auditoría forense. Doble idoneidad certificada en la República de Panamá.</p>
+        <div class="hero-actions">
+            <a href="/contacto.html" class="btn-gold">Consulta gratuita <svg viewBox="0 0 16 16" fill="none" width="16" height="16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a href="/servicios.html" class="btn-ghost">Explorar servicios</a>
         </div>
-        <div class="service-feature-content">
-            <h3>Peritaje Contable</h3>
-            <p>Análisis técnico-contable especializado para procesos judiciales y extrajudiciales. Como Contador Público Autorizado con idoneidad #2949, emito dictámenes periciales con valor probatorio ante tribunales panameños.</p>
-            <p>Fundamental cuando se requiere opinión experta sobre estados financieros, operaciones contables o transacciones comerciales en el marco de un proceso legal.</p>
-            <ul class="service-feature-list">
-                <li><span class="service-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span>Peritajes judiciales</li>
-                <li><span class="service-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span>Valor probatorio</li>
-                <li><span class="service-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span>Estados financieros</li>
-                <li><span class="service-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span>Daños y perjuicios</li>
-            </ul>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-number">15+</div>
+                <div class="hero-stat-label">Años de Experiencia</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">#522</div>
+                <div class="hero-stat-label">Idoneidad MASC</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">#2949</div>
+                <div class="hero-stat-label">Idoneidad CPA</div>
+            </div>
         </div>
-    </div>
-</article>
+    </header>
 
-<!-- ════════════════════════════════════════════════
-     SERVICE 3 — AUDITORÍA FORENSE
-     ════════════════════════════════════════════════ -->
-<article class="service-feature" id="auditoria">
-    <div class="service-feature-inner reveal">
-        <div class="service-feature-icon">
-            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg>
+    <!-- ═══════════════════════════════════════
+         TRUST BAND — Marquee
+         ═══════════════════════════════════════ -->
+    <section class="trust-band" aria-label="Servicios profesionales">
+        <div class="trust-track">
+            <div class="trust-content">
+                <span class="trust-item"><span class="trust-dot" aria-hidden="true"></span>Mediación Certificada</span>
+                <span class="trust-item"><span class="trust-dot" aria-hidden="true"></span>Peritaje Contable</span>
+                <span class="trust-item"><span class="trust-dot" aria-hidden="true"></span>Auditoría Forense</span>
+                <span class="trust-item"><span class="trust-dot" aria-hidden="true"></span>Conciliación</span>
+                <span class="trust-item"><span class="trust-dot" aria-hidden="true"></span>Arbitraje</span>
+                <span class="trust-item"><span class="trust-dot" aria-hidden="true"></span>Negociación</span>
+                <span class="trust-item"><span class="trust-dot" aria-hidden="true"></span>Reingeniería de Negocios</span>
+            </div>
+            <div class="trust-content" aria-hidden="true">
+                <span class="trust-item"><span class="trust-dot"></span>Mediación Certificada</span>
+                <span class="trust-item"><span class="trust-dot"></span>Peritaje Contable</span>
+                <span class="trust-item"><span class="trust-dot"></span>Auditoría Forense</span>
+                <span class="trust-item"><span class="trust-dot"></span>Conciliación</span>
+                <span class="trust-item"><span class="trust-dot"></span>Arbitraje</span>
+                <span class="trust-item"><span class="trust-dot"></span>Negociación</span>
+                <span class="trust-item"><span class="trust-dot"></span>Reingeniería de Negocios</span>
+            </div>
         </div>
-        <div class="service-feature-content">
-            <h3>Auditoría Forense</h3>
-            <p>Investigación especializada en fraude financiero, malversación de fondos, irregularidades contables y delitos económicos. Combinamos técnicas de auditoría con metodología de investigación forense para producir evidencia de calidad judicial.</p>
-            <ul class="service-feature-list">
-                <li><span class="service-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span>Investigación de fraude</li>
-                <li><span class="service-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span>Rastreo de activos</li>
-                <li><span class="service-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span>Informes periciales</li>
-                <li><span class="service-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></span>Lavado de activos</li>
-            </ul>
-        </div>
-    </div>
-</article>
+    </section>
 
-<!-- ════════════════════════════════════════════════
-     SERVICES GRID — Conciliación, Arbitraje, Negociación, Reingeniería
-     ════════════════════════════════════════════════ -->
-<section class="section services-grid-section">
-    <div class="section-container-wide">
-        <div class="reveal">
-            <p class="section-eyebrow">Más Servicios</p>
-            <h2 class="section-headline">Soluciones para cada<br><em>escenario</em></h2>
-        </div>
-        <div class="services-grid">
-            <!-- Conciliación -->
-            <div class="service-card reveal reveal-d1">
-                <div class="service-card-icon">
-                    <svg viewBox="0 0 36 36"><path d="M18 4v28M4 18h28"/><circle cx="18" cy="18" r="14"/></svg>
-                </div>
-                <h3>Conciliación</h3>
-                <p>A diferencia de la mediación, el conciliador tiene un rol activo: propone fórmulas de arreglo y sugiere soluciones para resolver disputas de manera eficiente. Ideal para conflictos donde las partes necesitan orientación experta.</p>
-            </div>
-            <!-- Arbitraje -->
-            <div class="service-card reveal reveal-d2">
-                <div class="service-card-icon">
-                    <svg viewBox="0 0 36 36"><path d="M18 4l14 10v12L18 32 4 26V14z"/><path d="M18 14v8M14 18h8"/></svg>
-                </div>
-                <h3>Arbitraje</h3>
-                <p>Procedimiento donde un árbitro imparcial emite un laudo vinculante para resolver controversias comerciales y civiles. Más rápido y flexible que el proceso judicial tradicional. Arbitraje institucional y ad hoc.</p>
-            </div>
-            <!-- Negociación -->
-            <div class="service-card reveal reveal-d3">
-                <div class="service-card-icon">
-                    <svg viewBox="0 0 36 36"><path d="M6 26l8-8 6 6 10-14"/><circle cx="6" cy="26" r="2"/><circle cx="30" cy="10" r="2"/></svg>
-                </div>
-                <h3>Negociación</h3>
-                <p>Asesoría estratégica en procesos de negociación para alcanzar acuerdos favorables. Diseño de estrategias, análisis de posiciones, identificación de intereses y construcción de acuerdos duraderos.</p>
-            </div>
-            <!-- Reingeniería -->
-            <div class="service-card reveal reveal-d1">
-                <div class="service-card-icon">
-                    <svg viewBox="0 0 36 36"><rect x="4" y="4" width="12" height="12" rx="2"/><rect x="20" y="4" width="12" height="12" rx="2"/><rect x="4" y="20" width="12" height="12" rx="2"/><path d="M20 26h12M26 20v12"/></svg>
-                </div>
-                <h3>Reingeniería de Negocios</h3>
-                <p>Reestructuración y optimización de procesos empresariales. Diagnóstico organizacional, rediseño de flujos de trabajo, implementación de controles internos y mejora de eficiencia operativa.</p>
-            </div>
-            <!-- Clases de Arbitrajes -->
-            <div class="service-card reveal reveal-d2">
-                <div class="service-card-icon">
-                    <svg viewBox="0 0 36 36"><path d="M6 8h24M6 14h24M6 20h18M6 26h12"/><circle cx="30" cy="20" r="4" opacity="0.5"/></svg>
-                </div>
-                <h3>Clases de Arbitraje</h3>
-                <p>Arbitraje de derecho, arbitraje de equidad, arbitraje institucional y arbitraje ad hoc. Cada tipo se adapta a la naturaleza específica del conflicto y las necesidades de las partes involucradas.</p>
-            </div>
-            <!-- Sedes -->
-            <div class="service-card reveal reveal-d3">
-                <div class="service-card-icon">
-                    <svg viewBox="0 0 36 36"><path d="M18 4C12 4 6 10 6 18c0 10 12 16 12 16s12-6 12-16c0-8-6-14-12-14z"/><circle cx="18" cy="17" r="5"/></svg>
-                </div>
-                <h3>Sedes de Arbitraje</h3>
-                <p>Facilitamos sedes de arbitraje en David, Chiriquí y Ciudad de Panamá. Espacios neutrales y confidenciales equipados para llevar a cabo procedimientos arbitrales con todas las garantías.</p>
+    <!-- ═══════════════════════════════════════
+         SERVICES INTRO
+         ═══════════════════════════════════════ -->
+    <section class="section section-deeper services-intro">
+        <div class="section-container text-center">
+            <div class="reveal">
+                <p class="section-eyebrow">Servicios Profesionales</p>
+                <h2 class="section-headline">Cada conflicto tiene<br>una <em>solución inteligente</em></h2>
+                <p class="section-subheadline">Siete disciplinas especializadas bajo un mismo techo. Desde métodos alternos de resolución de conflictos hasta peritaje contable y auditoría forense.</p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ════════════════════════════════════════════════
-     NUMBERS — Impact Statement
-     ════════════════════════════════════════════════ -->
-<section class="numbers-section" aria-label="Trayectoria en números">
-    <div class="numbers-grid reveal">
-        <div class="number-item">
-            <div class="number-value" data-target="15">15+</div>
-            <div class="number-label">Años de experiencia</div>
+    <!-- ═══════════════════════════════════════
+         FEATURED SERVICE 1 — Mediación
+         ═══════════════════════════════════════ -->
+    <article class="service-feature">
+        <div class="section-container">
+            <div class="service-feature-content reveal">
+                <div class="service-feature-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" width="48" height="48">
+                        <circle cx="16" cy="16" r="8" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="32" cy="16" r="8" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M24 28c-6.627 0-12 4.03-12 9v3h24v-3c0-4.97-5.373-9-12-9z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8 28c-4.418 0-8 2.687-8 6v2h8M40 28c4.418 0 8 2.687 8 6v2h-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <p class="section-eyebrow">Resolución de Conflictos</p>
+                <h3 class="section-headline">Mediación de<br><em>Conflictos</em></h3>
+                <p class="section-subheadline">Proceso voluntario y confidencial donde un mediador neutral facilita la comunicación entre las partes para alcanzar acuerdos mutuamente satisfactorios, sin necesidad de acudir a los tribunales.</p>
+                <p class="section-subheadline">Regulado por el Decreto Ley 5 de 1999 en Panamá, la mediación ofrece una vía eficiente y económica para resolver disputas preservando las relaciones entre las partes.</p>
+                <ul class="feature-list">
+                    <li>Conflictos comerciales</li>
+                    <li>Disputas familiares</li>
+                    <li>Conflictos laborales</li>
+                    <li>Pensión alimenticia</li>
+                </ul>
+                <a href="/mediacion.html" class="service-link">Conocer más <svg viewBox="0 0 16 16" fill="none" width="16" height="16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
         </div>
-        <div class="number-item">
-            <div class="number-value">2</div>
-            <div class="number-label">Idoneidades certificadas</div>
-        </div>
-        <div class="number-item">
-            <div class="number-value">5</div>
-            <div class="number-label">Títulos académicos</div>
-        </div>
-        <div class="number-item">
-            <div class="number-value">7</div>
-            <div class="number-label">Áreas de especialidad</div>
-        </div>
-    </div>
-</section>
+    </article>
 
-<!-- ════════════════════════════════════════════════
-     ABOUT
-     ════════════════════════════════════════════════ -->
-<section class="section about-section" id="nosotros">
-    <div class="section-container-wide">
-        <div class="about-grid">
-            <div class="about-portrait reveal">
+    <!-- ═══════════════════════════════════════
+         FEATURED SERVICE 2 — Peritaje Contable
+         ═══════════════════════════════════════ -->
+    <article class="service-feature">
+        <div class="section-container">
+            <div class="service-feature-content reveal">
+                <div class="service-feature-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" width="48" height="48">
+                        <rect x="6" y="4" width="28" height="40" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M14 14h12M14 20h12M14 26h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <rect x="32" y="18" width="12" height="26" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M36 24h4M36 29h4M36 34h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="38" cy="40" r="1.5" fill="currentColor"/>
+                    </svg>
+                </div>
+                <p class="section-eyebrow">Análisis Técnico-Contable</p>
+                <h3 class="section-headline">Peritaje<br><em>Contable</em></h3>
+                <p class="section-subheadline">Análisis técnico-contable especializado para procesos judiciales y extrajudiciales. Informes periciales con valor probatorio ante los tribunales de la República de Panamá.</p>
+                <p class="section-subheadline">Nuestros peritajes son elaborados con rigor técnico y metodología forense, garantizando la integridad y confiabilidad de cada conclusión presentada.</p>
+                <ul class="feature-list">
+                    <li>Peritajes judiciales</li>
+                    <li>Valor probatorio</li>
+                    <li>Estados financieros</li>
+                    <li>Daños y perjuicios</li>
+                </ul>
+                <a href="/peritaje.html" class="service-link">Conocer más <svg viewBox="0 0 16 16" fill="none" width="16" height="16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+        </div>
+    </article>
+
+    <!-- ═══════════════════════════════════════
+         FEATURED SERVICE 3 — Auditoría Forense
+         ═══════════════════════════════════════ -->
+    <article class="service-feature">
+        <div class="section-container">
+            <div class="service-feature-content reveal">
+                <div class="service-feature-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" width="48" height="48">
+                        <circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M30 30l14 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M14 18l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <p class="section-eyebrow">Investigación Financiera</p>
+                <h3 class="section-headline">Auditoría<br><em>Forense</em></h3>
+                <p class="section-subheadline">Investigación especializada de fraude financiero, malversación de fondos e irregularidades contables. Evidencia técnica para procesos judiciales y administrativos.</p>
+                <p class="section-subheadline">Aplicamos metodologías internacionales de auditoría forense para detectar, documentar y cuantificar irregularidades financieras con precisión probatoria.</p>
+                <ul class="feature-list">
+                    <li>Investigación de fraude</li>
+                    <li>Rastreo de activos</li>
+                    <li>Informes periciales</li>
+                    <li>Lavado de activos</li>
+                </ul>
+                <a href="/auditoria.html" class="service-link">Conocer más <svg viewBox="0 0 16 16" fill="none" width="16" height="16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+        </div>
+    </article>
+
+    <!-- ═══════════════════════════════════════
+         SECONDARY SERVICES GRID
+         ═══════════════════════════════════════ -->
+    <section class="section section-deeper">
+        <div class="section-container">
+            <div class="text-center reveal">
+                <p class="section-eyebrow">Más Especialidades</p>
+                <h2 class="section-headline">Servicios<br><em>complementarios</em></h2>
+            </div>
+            <div class="services-grid">
+
+                <!-- Conciliación -->
+                <div class="service-card reveal">
+                    <div class="service-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+                            <path d="M6 16c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M4 24l4-4 4 4M20 24l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="16" cy="28" r="2" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>Conciliación</h3>
+                    <p>Método alterno donde el conciliador propone fórmulas de arreglo y facilita acuerdos entre las partes en conflicto.</p>
+                </div>
+
+                <!-- Arbitraje -->
+                <div class="service-card reveal">
+                    <div class="service-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+                            <path d="M16 4v6M16 10l-8 14h16L16 10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 28h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="16" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>Arbitraje</h3>
+                    <p>Procedimiento donde un árbitro imparcial emite un laudo vinculante para resolver controversias comerciales y civiles.</p>
+                </div>
+
+                <!-- Negociación -->
+                <div class="service-card reveal">
+                    <div class="service-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+                            <path d="M4 20l6-6 4 4 6-6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="4" cy="20" r="2" stroke="currentColor" stroke-width="1.5"/>
+                            <circle cx="28" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>Negociación</h3>
+                    <p>Asesoría estratégica en procesos de negociación para alcanzar acuerdos favorables y preservar relaciones comerciales.</p>
+                </div>
+
+                <!-- Reingeniería de Negocios -->
+                <div class="service-card reveal">
+                    <div class="service-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+                            <rect x="4" y="4" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                            <rect x="18" y="4" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                            <rect x="4" y="18" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M22 18v4h-4M22 22l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Reingeniería de Negocios</h3>
+                    <p>Reestructuración y optimización de procesos empresariales para mejorar la eficiencia y competitividad organizacional.</p>
+                </div>
+
+                <!-- Clases de Arbitraje -->
+                <div class="service-card reveal">
+                    <div class="service-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+                            <path d="M4 26V8a2 2 0 012-2h16a2 2 0 012 2v14a2 2 0 01-2 2H8l-4 4v-2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 12h8M10 16h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="26" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M25 10l1 1 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Clases de Arbitraje</h3>
+                    <p>Formación especializada en métodos alternos de resolución de conflictos y técnicas de arbitraje profesional.</p>
+                </div>
+
+                <!-- Sedes de Arbitraje -->
+                <div class="service-card reveal">
+                    <div class="service-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+                            <path d="M4 28h24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M16 4l12 8H4l12-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 12v16M14 12v16M18 12v16M24 12v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M4 12h24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Sedes de Arbitraje</h3>
+                    <p>Espacios profesionales equipados para la celebración de audiencias arbitrales y sesiones de mediación.</p>
+                </div>
+
+            </div>
+            <div class="text-center" style="margin-top:48px;">
+                <a href="/servicios.html" class="service-link" style="justify-content:center;">Ver todos los servicios <svg viewBox="0 0 16 16" fill="none" width="16" height="16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         NUMBERS SECTION
+         ═══════════════════════════════════════ -->
+    <section class="section numbers-section">
+        <div class="section-container">
+            <div class="numbers-grid reveal">
+                <div class="number-item">
+                    <div class="number-value" data-count="15">15+</div>
+                    <div class="number-label">Años de Experiencia</div>
+                </div>
+                <div class="number-item">
+                    <div class="number-value">2</div>
+                    <div class="number-label">Idoneidades Certificadas</div>
+                </div>
+                <div class="number-item">
+                    <div class="number-value">5</div>
+                    <div class="number-label">Títulos Profesionales</div>
+                </div>
+                <div class="number-item">
+                    <div class="number-value">7</div>
+                    <div class="number-label">Áreas de Especialización</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         ABOUT TEASER
+         ═══════════════════════════════════════ -->
+    <section class="section section-dark">
+        <div class="section-container">
+            <div class="about-teaser reveal">
                 <div class="about-initials">LS</div>
-                <div class="about-portrait-name">Leonel E. Sanjur A.</div>
-                <div class="about-portrait-title">CPA &middot; Mediador Certificado</div>
-                <div class="about-portrait-creds">
-                    <span class="cred-badge">MASC #522</span>
-                    <span class="cred-badge">CPA #2949</span>
-                </div>
+                <p class="section-eyebrow">Sobre el Profesional</p>
+                <h2 class="section-headline">Leonel E. <em>Sanjur A.</em></h2>
+                <p class="section-subheadline">Contador Público Autorizado y Mediador Certificado con doble idoneidad en la República de Panamá. Más de 15 años resolviendo conflictos en David, Chiriquí.</p>
+                <a href="/nosotros.html" class="service-link" style="justify-content:center;margin-top:32px;">Conocer al profesional <svg viewBox="0 0 16 16" fill="none" width="16" height="16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
-            <div class="about-body">
-                <div class="reveal">
-                    <p class="section-eyebrow">Sobre el Profesional</p>
-                    <h3>La única firma en Chiriquí con <em>doble idoneidad</em> certificada</h3>
-                    <p>Leonel E. Sanjur A. es Contador Público Autorizado y Mediador Certificado en la República de Panamá — una combinación única que permite abordar conflictos desde la perspectiva legal y financiera simultáneamente.</p>
-                    <p>Con sede en David, Chiriquí, ha dedicado más de 15 años a resolver disputas comerciales, elaborar peritajes contables para tribunales y conducir auditorías forenses que producen resultados con certeza jurídica.</p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         CTA SECTION
+         ═══════════════════════════════════════ -->
+    <section class="cta-section">
+        <div class="section-container text-center reveal">
+            <p class="section-eyebrow">Consulta Gratuita</p>
+            <h2 class="section-headline">¿Listo para resolver<br>su <em>conflicto</em>?</h2>
+            <p class="section-subheadline">Agende una consulta confidencial sin costo. Evaluamos su caso y le presentamos la mejor ruta de resolución.</p>
+            <a href="/contacto.html" class="btn-gold">Contactar ahora <svg viewBox="0 0 16 16" fill="none" width="16" height="16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         FOOTER
+         ═══════════════════════════════════════ -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-grid">
+
+                <!-- Column 1: Brand -->
+                <div class="footer-col">
+                    <div class="footer-brand">LeSanjura</div>
+                    <p class="footer-description">Firma profesional especializada en mediación de conflictos, peritaje contable y auditoría forense. Doble idoneidad certificada en la República de Panamá.</p>
                 </div>
-                <div class="credentials-grid reveal reveal-d2">
-                    <div class="credential-item">
-                        <h4>Licenciatura en Contabilidad</h4>
-                        <p>Universidad de Panamá</p>
-                    </div>
-                    <div class="credential-item">
-                        <h4>Maestría en Ciencias Administrativas</h4>
-                        <p>Universidad Tecnológica de Panamá</p>
-                    </div>
-                    <div class="credential-item">
-                        <h4>Auditoría Forense</h4>
-                        <p>Universidad Especializada del CPA</p>
-                    </div>
-                    <div class="credential-item">
-                        <h4>Métodos Alternos de Resolución</h4>
-                        <p>Universidad Santa María La Antigua</p>
-                    </div>
-                    <div class="credential-item">
-                        <h4>Diplomado en Derecho Procesal Penal</h4>
-                        <p>Universidad del Istmo</p>
-                    </div>
-                    <div class="credential-item">
-                        <h4>Doble Idoneidad Certificada</h4>
-                        <p>MASC #522 &middot; CPA #2949</p>
-                    </div>
+
+                <!-- Column 2: Servicios -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Servicios</h4>
+                    <ul class="footer-links">
+                        <li><a href="/mediacion.html">Mediación</a></li>
+                        <li><a href="/peritaje.html">Peritaje Contable</a></li>
+                        <li><a href="/auditoria.html">Auditoría Forense</a></li>
+                        <li><a href="/servicios.html">Todos los servicios</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Más Servicios -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Más Servicios</h4>
+                    <ul class="footer-links">
+                        <li><a href="/servicios.html">Conciliación</a></li>
+                        <li><a href="/servicios.html">Arbitraje</a></li>
+                        <li><a href="/servicios.html">Negociación</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Contacto -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Contacto</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+5077756353">+507 775-6353</a></li>
+                        <li><a href="tel:+50766726353">+507 6672-6353</a></li>
+                        <li><a href="mailto:lesanjura@lesanjura.org">lesanjura@lesanjura.org</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2026 LeSanjura. Todos los derechos reservados.</p>
+                <div class="footer-badges">
+                    <span class="footer-badge">Mediador MASC #522</span>
+                    <span class="footer-badge">CPA #2949</span>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </footer>
 
-<!-- ════════════════════════════════════════════════
-     PROCESS
-     ════════════════════════════════════════════════ -->
-<section class="section process-section" id="proceso">
-    <div class="section-container">
-        <div class="text-center reveal">
-            <p class="section-eyebrow">Cómo Trabajamos</p>
-            <h2 class="section-headline">Un proceso diseñado<br>para la <em>claridad</em></h2>
-        </div>
-        <div class="process-steps">
-            <div class="process-step reveal reveal-d1">
-                <div class="process-number">01</div>
-                <h3>Consulta Inicial</h3>
-                <p>Evaluamos su caso de forma confidencial. Analizamos la naturaleza del conflicto y determinamos la mejor ruta de resolución.</p>
-            </div>
-            <div class="process-step reveal reveal-d2">
-                <div class="process-number">02</div>
-                <h3>Estrategia</h3>
-                <p>Diseñamos un plan de acción personalizado. Seleccionamos el método más adecuado: mediación, arbitraje, peritaje o auditoría.</p>
-            </div>
-            <div class="process-step reveal reveal-d3">
-                <div class="process-number">03</div>
-                <h3>Ejecución</h3>
-                <p>Implementamos la estrategia con rigor profesional. Cada sesión, análisis o informe se conduce bajo estrictos estándares éticos.</p>
-            </div>
-            <div class="process-step reveal reveal-d4">
-                <div class="process-number">04</div>
-                <h3>Resolución</h3>
-                <p>Alcanzamos acuerdos, emitimos dictámenes o entregamos informes con certeza jurídica y valor probatorio.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ════════════════════════════════════════════════
-     FAQ — AEO Optimized for AI Overviews
-     ════════════════════════════════════════════════ -->
-<section class="section faq-section" id="faq">
-    <div class="section-container">
-        <div class="text-center reveal">
-            <p class="section-eyebrow">Preguntas Frecuentes</p>
-            <h2 class="section-headline">Todo lo que necesita<br><em>saber</em></h2>
-        </div>
-        <div class="faq-grid">
-            <div class="faq-item reveal">
-                <button class="faq-question" aria-expanded="false">
-                    <span>¿Qué es la mediación de conflictos en Panamá?</span>
-                    <span class="faq-toggle"><svg viewBox="0 0 12 12"><path d="M6 2v8M2 6h8"/></svg></span>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">La mediación es un método alterno de resolución de conflictos (MARC) regulado por el Decreto Ley 5 de 1999 en Panamá. Consiste en un proceso voluntario y confidencial donde un mediador certificado facilita la comunicación entre las partes en disputa para que alcancen acuerdos mutuamente satisfactorios, sin necesidad de acudir a los tribunales. Es más rápida y económica que el proceso judicial.</div>
-                </div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-question" aria-expanded="false">
-                    <span>¿Cuánto cuesta un peritaje contable en Panamá?</span>
-                    <span class="faq-toggle"><svg viewBox="0 0 12 12"><path d="M6 2v8M2 6h8"/></svg></span>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">El costo de un peritaje contable varía según la complejidad del caso, el volumen de documentación y el alcance del análisis. Los honorarios se establecen con base en la normativa de la Junta Técnica de Contabilidad y pueden oscilar entre $1,500 y $5,000 o más para casos complejos. Se recomienda solicitar una consulta inicial gratuita para obtener una cotización precisa.</div>
-                </div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-question" aria-expanded="false">
-                    <span>¿Cuál es la diferencia entre mediación y conciliación?</span>
-                    <span class="faq-toggle"><svg viewBox="0 0 12 12"><path d="M6 2v8M2 6h8"/></svg></span>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">En la mediación, el mediador facilita el diálogo entre las partes sin proponer soluciones — son las partes quienes construyen su propio acuerdo. En la conciliación, el conciliador tiene un rol más activo: puede proponer fórmulas de arreglo y sugerir soluciones. Ambos son métodos alternos de resolución de conflictos (MARC) reconocidos en la legislación panameña.</div>
-                </div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-question" aria-expanded="false">
-                    <span>¿Qué hace un auditor forense?</span>
-                    <span class="faq-toggle"><svg viewBox="0 0 12 12"><path d="M6 2v8M2 6h8"/></svg></span>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">Un auditor forense investiga fraudes financieros, malversación de fondos, irregularidades contables y delitos económicos. Su trabajo incluye análisis de estados financieros, rastreo de activos, recopilación de evidencia para procesos judiciales y elaboración de informes periciales. En Panamá, esta especialidad es ejercida por Contadores Públicos Autorizados con formación específica en auditoría forense.</div>
-                </div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-question" aria-expanded="false">
-                    <span>¿Cuánto vale una sesión de mediación?</span>
-                    <span class="faq-toggle"><svg viewBox="0 0 12 12"><path d="M6 2v8M2 6h8"/></svg></span>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">Los honorarios de mediación dependen de la naturaleza del conflicto y la cantidad de sesiones necesarias. Una mediación puede resolverse en 1 a 5 sesiones. Los costos son significativamente menores que un proceso judicial, ahorrando tiempo y dinero a las partes. Consulte directamente para conocer las tarifas específicas según su caso.</div>
-                </div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-question" aria-expanded="false">
-                    <span>¿Quién puede ser perito contable en Panamá?</span>
-                    <span class="faq-toggle"><svg viewBox="0 0 12 12"><path d="M6 2v8M2 6h8"/></svg></span>
-                </button>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">Para ejercer como perito contable en Panamá se requiere ser Contador Público Autorizado (CPA) con idoneidad vigente emitida por la Junta Técnica de Contabilidad. Además, es recomendable contar con formación especializada en auditoría forense y experiencia en la elaboración de dictámenes periciales. El perito debe registrarse ante los tribunales donde ejercerá.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ════════════════════════════════════════════════
-     CONTACT
-     ════════════════════════════════════════════════ -->
-<section class="section contact-section" id="contacto">
-    <div class="section-container-wide">
-        <div class="contact-grid">
-            <div class="contact-info reveal">
-                <p class="section-eyebrow">Contacto</p>
-                <h3>Hablemos sobre<br>su <em>caso</em></h3>
-                <p>La consulta inicial es gratuita y confidencial. Cuéntenos sobre su situación y le orientaremos sobre la mejor ruta de resolución.</p>
-
-                <ul class="contact-details">
-                    <li class="contact-detail">
-                        <div class="contact-icon">
-                            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                        </div>
-                        <div class="contact-detail-text">
-                            <span>Teléfono</span>
-                            <a href="tel:+5077756353">(507) 775-6353</a>
-                        </div>
-                    </li>
-                    <li class="contact-detail">
-                        <div class="contact-icon">
-                            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                        </div>
-                        <div class="contact-detail-text">
-                            <span>Celular / WhatsApp</span>
-                            <a href="tel:+50766726353">(507) 6672-6353</a>
-                        </div>
-                    </li>
-                    <li class="contact-detail">
-                        <div class="contact-icon">
-                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-                        </div>
-                        <div class="contact-detail-text">
-                            <span>Email</span>
-                            <a href="mailto:lesanjura@lesanjura.org">lesanjura@lesanjura.org</a>
-                        </div>
-                    </li>
-                    <li class="contact-detail">
-                        <div class="contact-icon">
-                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        </div>
-                        <div class="contact-detail-text">
-                            <span>Ubicación</span>
-                            <p>David, Chiriquí, Panamá</p>
-                        </div>
-                    </li>
-                </ul>
-
-                <a href="https://wa.me/50766726353?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta" class="wa-btn" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    Escribir por WhatsApp
-                </a>
-            </div>
-
-            <form class="contact-form reveal reveal-d2" action="#" method="POST" aria-label="Formulario de contacto">
-                <div class="form-row">
-                    <div class="form-field">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Su nombre completo" required>
-                    </div>
-                    <div class="form-field">
-                        <label for="telefono">Teléfono</label>
-                        <input type="tel" id="telefono" name="telefono" placeholder="(507) 0000-0000">
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
-                </div>
-                <div class="form-field">
-                    <label for="servicio">Servicio de interés</label>
-                    <select id="servicio" name="servicio" required>
-                        <option value="" disabled selected>Seleccione un servicio</option>
-                        <option value="mediacion">Mediación de Conflictos</option>
-                        <option value="conciliacion">Conciliación</option>
-                        <option value="arbitraje">Arbitraje</option>
-                        <option value="negociacion">Negociación</option>
-                        <option value="peritaje">Peritaje Contable</option>
-                        <option value="auditoria">Auditoría Forense</option>
-                        <option value="reingenieria">Reingeniería de Negocios</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                </div>
-                <div class="form-field">
-                    <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" placeholder="Describa brevemente su caso o consulta..." required></textarea>
-                </div>
-                <button type="submit" class="form-submit">Enviar consulta</button>
-            </form>
-        </div>
-    </div>
-</section>
-
-<!-- ════════════════════════════════════════════════
-     FOOTER
-     ════════════════════════════════════════════════ -->
-<footer class="footer" role="contentinfo">
-    <div class="footer-inner">
-        <div class="footer-grid">
-            <div>
-                <div class="footer-brand">LeSanjura</div>
-                <p class="footer-desc">Mediación de conflictos, peritaje contable y auditoría forense en David, Chiriquí, Panamá. Doble idoneidad certificada.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Servicios</h4>
-                <ul>
-                    <li><a href="#mediacion">Mediación</a></li>
-                    <li><a href="#peritaje">Peritaje Contable</a></li>
-                    <li><a href="#auditoria">Auditoría Forense</a></li>
-                    <li><a href="#servicios">Conciliación</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Más Servicios</h4>
-                <ul>
-                    <li><a href="#servicios">Arbitraje</a></li>
-                    <li><a href="#servicios">Negociación</a></li>
-                    <li><a href="#servicios">Reingeniería</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contacto</h4>
-                <ul>
-                    <li><a href="tel:+5077756353">(507) 775-6353</a></li>
-                    <li><a href="tel:+50766726353">(507) 6672-6353</a></li>
-                    <li><a href="mailto:lesanjura@lesanjura.org">lesanjura@lesanjura.org</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span class="footer-copy">&copy; 2026 LeSanjura — Leonel E. Sanjur A. Todos los derechos reservados.</span>
-            <div class="footer-legal">
-                <span>Idoneidad MASC #522</span>
-                <span>Idoneidad CPA #2949</span>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- ════════════════════════════════════════════════
-     JAVASCRIPT — Minimal, Performant
-     ════════════════════════════════════════════════ -->
-<script>
-(function() {
-    'use strict';
-
-    // Nav scroll behavior
-    const nav = document.getElementById('nav');
-    let lastScroll = 0;
-
-    function onScroll() {
-        const y = window.scrollY;
-        nav.classList.toggle('scrolled', y > 40);
-        lastScroll = y;
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    // Mobile nav toggle
-    const toggle = document.getElementById('navToggle');
-    const links = document.getElementById('navLinks');
-
-    toggle.addEventListener('click', function() {
-        const isOpen = links.classList.toggle('open');
-        toggle.classList.toggle('open');
-        toggle.setAttribute('aria-expanded', isOpen);
-    });
-
-    // Close mobile nav on link click
-    links.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function() {
-            links.classList.remove('open');
-            toggle.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
-        });
-    });
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -60px 0px'
-    });
-
-    reveals.forEach(function(el) { observer.observe(el); });
-
-    // FAQ accordion
-    document.querySelectorAll('.faq-question').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            const item = btn.closest('.faq-item');
-            const answer = item.querySelector('.faq-answer');
-            const isOpen = item.classList.contains('open');
-
-            // Close all
-            document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
-                openItem.classList.remove('open');
-                openItem.querySelector('.faq-answer').style.maxHeight = null;
-                openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-            });
-
-            // Open clicked if was closed
-            if (!isOpen) {
-                item.classList.add('open');
-                answer.style.maxHeight = answer.scrollHeight + 'px';
-                btn.setAttribute('aria-expanded', 'true');
-            }
-        });
-    });
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-        a.addEventListener('click', function(e) {
-            var href = this.getAttribute('href');
-            if (href === '#') return;
-            e.preventDefault();
-            var target = document.querySelector(href);
-            if (target) {
-                var offset = nav.offsetHeight + 16;
-                var y = target.getBoundingClientRect().top + window.scrollY - offset;
-                window.scrollTo({ top: y, behavior: 'smooth' });
-            }
-        });
-    });
-})();
-</script>
-
+    <script src="scripts.js"></script>
 </body>
 </html>
