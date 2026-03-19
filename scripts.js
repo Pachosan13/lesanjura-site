@@ -81,3 +81,48 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
         }
     });
 });
+
+// Contact form submission
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('formSubmitBtn');
+        const feedback = document.getElementById('formFeedback');
+        const originalText = btn.textContent;
+
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+        feedback.className = 'form-feedback';
+        feedback.textContent = '';
+
+        const data = {
+            nombre: contactForm.nombre.value,
+            telefono: contactForm.telefono.value,
+            email: contactForm.email.value,
+            servicio: contactForm.servicio.value,
+            mensaje: contactForm.mensaje.value,
+        };
+
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+            if (res.ok) {
+                feedback.className = 'form-feedback success';
+                feedback.textContent = 'Mensaje enviado. Nos comunicaremos con usted pronto.';
+                contactForm.reset();
+            } else {
+                throw new Error('Error');
+            }
+        } catch {
+            feedback.className = 'form-feedback error';
+            feedback.textContent = 'Hubo un error al enviar. Intente de nuevo o escríbanos por WhatsApp.';
+        } finally {
+            btn.disabled = false;
+            btn.textContent = originalText;
+        }
+    });
+}

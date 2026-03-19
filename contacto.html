@@ -188,7 +188,7 @@
 
                 <!-- Right Column — Contact Form -->
                 <div class="contact-form-wrapper reveal">
-                    <form class="contact-form" action="#" method="POST">
+                    <form class="contact-form" id="contactForm">
                         <div class="form-row">
                             <div class="form-field">
                                 <label for="nombre">Nombre</label>
@@ -221,7 +221,8 @@
                             <label for="mensaje">Mensaje</label>
                             <textarea id="mensaje" name="mensaje" placeholder="Describa brevemente su caso..." rows="5"></textarea>
                         </div>
-                        <button type="submit" class="form-submit">Enviar mensaje</button>
+                        <button type="submit" class="form-submit" id="formSubmitBtn">Enviar mensaje</button>
+                        <div class="form-feedback" id="formFeedback" role="alert"></div>
                     </form>
                 </div>
 
